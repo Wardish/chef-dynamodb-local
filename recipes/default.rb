@@ -32,6 +32,5 @@ template "/etc/systemd/system/dynamodb.service" do
 end
 
 service "dynamodb" do
-    action [:enable, :restart]
-  end
+  action [:enable, :restart]
 end
