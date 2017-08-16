@@ -23,3 +23,15 @@ tar_extract config["download_url"] do
   target_dir config["directory"]
   creates "#{config["directory"]}/DynamoDBLocal_lib"
 end
+
+template "/etc/systemd/system/dynamodb.service" do
+  source "dynamodb.service.erb"
+  mode 0644
+  owner "root"
+  variables(:directory => config["directory"])
+end
+
+service "dynamodb" do
+    action [:enable, :restart]
+  end
+end
